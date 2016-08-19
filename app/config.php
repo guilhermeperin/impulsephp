@@ -11,6 +11,8 @@
         'dbname' => 'impulse'
     ]);
 
+    $configs->env->development->auth->setURLs('/impulsephp/home/','/impulsephp/login/');
+
 	/*
 		//Globais
 		$configs->title = 'Titulo customizado';
