@@ -14,6 +14,27 @@
 
     $configs->env->development->auth->setURLs('/impulsephp/home/','/impulsephp/login/');
 
+    //especificação dos menus (níveis de acesso dos usuários)
+    //a seguir, dashboard é o nome do ícone do font-awesome
+    $configs->env->development->menu->setMenus(array(
+        'Home/dashboard' => '%baseURI%/home',
+        'Link/user' => 'http://www.google.com',
+        'Submenus/cog' => array(
+            'Painel/dashboard' => '%baseURI%/home',
+            'Atualizações/hand-o-up' => '%baseURI%/atualizacoes'
+        )
+    ),'administrador');
+
+    $configs->env->development->menu->setMenus(array(
+        'Home/dashboard' => '%baseURI%/home',
+    ));
+
+    $configs->env->development->menu->setConfigs(array(
+        'container' => 'nav',
+        'container_class' => 'navbar navbar-default',
+        'menu_class' => 'nav navbar-nav'
+    ));
+
     //produção
    /* $configs->env->add('production');
     $configs->env->production->baseURI = '/';
