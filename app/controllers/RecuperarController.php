@@ -19,13 +19,15 @@ class RecuperarController extends \HXPHP\System\Controller{
         );
 
         $this->auth->redirectCheck(true);
+
+        $this->view->setTitle('Sistema HXPHP - Altere sua senha');
+
+        $this->load('Modules\Messages','password-recovery');
+        $this->messages->setBlock('alerts');
     }
 
     public function solicitarAction(){
         $this->view->setFile('index');
-
-        $this->load('Modules\Messages','password-recovery');
-        $this->messages->setBlock('alerts');
 
         $this->request->setCustomFilters(array(
             'email' => FILTER_VALIDATE_EMAIL
@@ -95,7 +97,24 @@ class RecuperarController extends \HXPHP\System\Controller{
     }
 
     public function redefinirAction($token){
+        $this->view->setTitle('Sistema HXPHP - Altere sua senha');
 
+        $validarToken = Recovery::validarToken($token);
+
+        $error = null;
+
+        if($validarToken->status === false){
+            $error = $this->messages->getByCode($validarToken->code);
+        }else{
+            $this->view->setVar('token',$token);
+        }
+
+        if(!is_null($error)){
+            $this->view->setFile('blank');
+            $this->load('Helpers\Alert',$error);
+        }else{
+
+        }
     }
 
     public function alterarSenhaAction($token){
