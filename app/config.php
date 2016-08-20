@@ -2,7 +2,8 @@
 	//Constantes
 	$configs = new HXPHP\System\Configs\Config;
 
-	$configs->env->add('development');
+	//desenvolvimento
+    $configs->env->add('development');
     $configs->env->development->baseURI = '/impulsephp/';
     $configs->env->development->database->setConnectionData([
         'host' => 'ssh.alanweingartner.com.br',
@@ -12,6 +13,18 @@
     ]);
 
     $configs->env->development->auth->setURLs('/impulsephp/home/','/impulsephp/login/');
+
+    //produção
+   /* $configs->env->add('production');
+    $configs->env->production->baseURI = '/';
+    $configs->env->production->database->setConnectionData([
+        'host' => 'ssh.alanweingartner.com.br',
+        'user' => 'root',
+        'password' => 'impulsedatabase',
+        'dbname' => 'impulse'
+    ]);
+
+    $configs->env->production->auth->setURLs('/home/','/login/');*/
 
 	/*
 		//Globais
