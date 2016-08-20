@@ -34,8 +34,8 @@ class LoginController extends \HXPHP\System\Controller{
             $login = User::login($post);
 
             if($login->status == true){
-                //$this->auth->login($login->user->id, $login->user->email);
-                $this->auth->login($login->user->id);
+                //login(user_id,username,role) (Passei o valor do username em branco pois nao quero usar username
+                $this->auth->login($login->user->id,"",$login->user->role->role);
             }else{
                 /*var_dump($login->status);
                 var_dump($login->user->id);
